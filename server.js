@@ -27,7 +27,7 @@ app.get("/", (req, res) => {
 
 // uploaded_image is the name of the file input from the form in HTML
 app.post("/upload-image", upload.single("uploaded_image"), async(req, res) => {
-  process_image();
-  res.render("result", { title: "thala" });
+  const prediction = await process_image();
+  res.render("result", { percentage:(prediction.probability*100).toFixed(2),animal:prediction.tagName})
 });
 

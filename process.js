@@ -13,10 +13,10 @@ const process_image = async () => {
       url:process.env.PREDICTION_ENDPOINT_URL,
       headers: headers,
       data: {
-        "Url": `https://lion-cheetah-classifier.azurewebsites.net/image.png`,
+        "Url": `https://custom-vision-demo-webapp.azurewebsites.net/image.png`,
       },
     });
-    console.log(response,response.data);
+    return response.data.predictions[0] // The first element of the predictions array is sufficient to be returned as the majority percentage is always the first element 
   } catch (err) {
     throw err;
   }
